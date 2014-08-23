@@ -1,0 +1,19 @@
+*~
+*.bak
+Thumbs.db
+desktop.ini
+.DS_Store
+.buildpath
+.project
+.settings
+.tmpoj
+.idea
+nbproject/
+
+# composer
+fuel/vendor/
+
+# fuelphp
+fuel/app/logs/*/*/*
+fuel/app/cache/*/*
+
