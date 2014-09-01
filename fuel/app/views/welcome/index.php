@@ -45,6 +45,7 @@
 			<div class="col-md-4">
 				<h2>Get Started</h2>
                 <?php
+                    echo $_SERVER["MONGOLAB_URI"].PHP_EOL;
                     echo Config::get("FUEL_ENV").PHP_EOL;
                     echo Config::get("MONGOLAB_URI").PHP_EOL;
                     echo Config::get("MONGODB_HOST").PHP_EOL;
