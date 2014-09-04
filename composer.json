@@ -19,7 +19,8 @@
         "php": ">=5.3.3",
         "monolog/monolog": "1.5.*",
     	"fuelphp/upload": "2.0.1",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "ext-mongo": "*"
     },
     "suggest": {
         "mustache/mustache": "Allow Mustache templating with the Parser package",
