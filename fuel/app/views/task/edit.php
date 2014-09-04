@@ -3,5 +3,5 @@
 
 <?php echo render('task/_form'); ?>
 <p>
-	<?php echo Html::anchor('task/view/'.$task->id, 'View'); ?> |
+	<?php echo Html::anchor('task/view/'.$task['_id'], 'View'); ?> |
 	<?php echo Html::anchor('task', 'Back'); ?></p>

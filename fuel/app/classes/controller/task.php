@@ -15,7 +15,7 @@ class Controller_Task extends Controller_Template{
 		is_null($id) and Response::redirect('task');
 
         $mongodb = Mongo_Db::instance();
-        if ( ! $data['task'] = $mongodb->where(array('oid' => $id))->get('tasks'))
+        if ( ! $data['task'] = $mongodb->where(array('_id' => $id))->get('tasks'))
         {
             Session::set_flash('error', 'Could not find task #'.$id);
             Response::redirect('task');
@@ -66,7 +66,7 @@ class Controller_Task extends Controller_Template{
 		is_null($id) and Response::redirect('task');
 
         $mongodb = Mongo_Db::instance();
-		if ( ! $mongodb->where(array('oid' => $id))->get('tasks'))
+		if ( ! $mongodb->where(array('_id' => $id))->get('tasks'))
 		{
 			Session::set_flash('error', 'Could not find task #'.$id);
 			Response::redirect('task');
@@ -124,7 +124,7 @@ class Controller_Task extends Controller_Template{
 		is_null($id) and Response::redirect('task');
 
         $mongodb = Mongo_Db::instance();
-		if ($mongodb->where(array('oid' => $id))->get('tasks'))
+		if ($mongodb->where(array('_id' => $id))->get('tasks'))
 		{
 			$mongodb->delete('users');
 			Session::set_flash('success', 'Deleted task #'.$id);

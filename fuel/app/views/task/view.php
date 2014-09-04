@@ -1,4 +1,4 @@
-<h2>Viewing <span class='muted'>#<?php echo $task->id; ?></span></h2>
+<h2>Viewing <span class='muted'>#<?php echo $task['_id']; ?></span></h2>
 
 <p>
 	<strong>Name:</strong>
@@ -13,5 +13,5 @@
 	<strong>Deleted:</strong>
 	<?php echo $task->deleted; ?></p>
 
-<?php echo Html::anchor('task/edit/'.$task->id, 'Edit'); ?> |
+<?php echo Html::anchor('task/edit/'.$task['_id'], 'Edit'); ?> |
 <?php echo Html::anchor('task', 'Back'); ?>
