@@ -38,4 +38,5 @@ if (preg_match($mongoUriPattern, $_SERVER["MONGOLAB_URI"], $matches)) {
     Config::set('db.mongo.default.database', $dbname);
     Config::set('db.mongo.default.username', $dbuser);
     Config::set('db.mongo.default.password', $dbpass);
+    Config::save('db', 'db');
 }
