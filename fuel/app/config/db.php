@@ -8,10 +8,11 @@
 return array(
     'mongo' => array(
         'default' => array(
-            'hostname'   => 'ds063919.mongolab.com:63919',
-            'database'   => 'heroku_app28822778',
-            'username'   => 'heroku_app28822778',
-            'password'   => 'gurimmer511',
+            'hostname'   => Config::get('mongodb.host'),
+            'port'       => Config::get('mongodb.port'),
+            'database'   => Config::get('mongodb.name'),
+            'username'   => Config::get('mongodb.user'),
+            'password'   => Config::get('mongodb.pass'),
         ),
     ),
 );

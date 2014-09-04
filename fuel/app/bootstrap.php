@@ -29,3 +29,13 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOP
 
 // Initialize the framework with the config file.
 Fuel::init('config.php');
+
+$mongoUriPattern = '/mongodb:\/\/(?:([^:^@]+)(?::([^@]+))?@)?([^:^\/]+)(?::(\d+))?\/(.+)/';
+if (preg_match($mongoUriPattern, $_SERVER["MONGOLAB_URI"], $matches)) {
+    list($mongolab_uri, $dbuser, $dbpass, $dbhost, $dbport, $dbname) = $matches;
+    Config::set('mongodb.host', $dbhost);
+    Config::set('mongodb.port', $dbport);
+    Config::set('mongodb.name', $dbname);
+    Config::set('mongodb.user', $dbuser);
+    Config::set('mongodb.pass', $dbpass);
+}
