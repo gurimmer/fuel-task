@@ -14,7 +14,7 @@
 	<tbody>
 <?php foreach ($tasks as $item): ?>		<tr>
 
-			<td><?php echo $item->name; ?></td>
+			<td><?php echo $item['name']; ?></td>
 			<td><?php echo $item->parent; ?></td>
 			<td><?php echo $item->finished; ?></td>
 			<td><?php echo $item->deleted; ?></td>
