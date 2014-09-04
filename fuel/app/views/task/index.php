@@ -1,6 +1,6 @@
 <h2>Listing <span class='muted'>Tasks</span></h2>
 <br>
-<?php if ($tasks): ?>
+<?php if ($tasks): var_dump($tasks);?>
 <table class="table table-striped">
 	<thead>
 		<tr>
