@@ -34,7 +34,7 @@ if (array_key_exists('HEROKU_POSTGRESQL_BLACK_URL', $_SERVER)) {
     $dbConfigPattern = '/postgres:\/\/(?:([^:^@]+)(?::([^@]+))?@)?([^:^\/]+)(?::(\d+))?\/(.+)/';
     if (preg_match($dbConfigPattern, $_SERVER["HEROKU_POSTGRESQL_BLACK_URL"], $matches)) {
         list($dbConfig, $dbuser, $dbpass, $dbhost, $dbport, $dbname) = $matches;
-        Config::set('db.default.connection.dsn', 'postgres:host='.$dbhost.';dbname='.$dbname);
+        Config::set('db.default.connection.dsn', 'pgsql:host='.$dbhost.';dbname='.$dbname);
         Config::set('db.default.connection.username', $dbuser);
         Config::set('db.default.connection.password', $dbpass);
         Config::save('db', 'db');
@@ -45,6 +45,3 @@ if (array_key_exists('HEROKU_POSTGRESQL_BLACK_URL', $_SERVER)) {
     Config::set('db.default.connection.password', 'root');
     Config::save('db', 'db');
 }
-
-
-
