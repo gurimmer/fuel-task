@@ -35,7 +35,7 @@
     "scripts": {
         "post-install-cmd": [
             "php oil r install",
-            "php refine migrate"
+            "php oil refine migrate"
         ]
     },
     "minimum-stability": "dev"
