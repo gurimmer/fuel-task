@@ -40,6 +40,7 @@ if (array_key_exists('HEROKU_POSTGRESQL_BLACK_URL', $_SERVER)) {
         Config::save('db', 'db');
     }
 } else {
+    Config::set('db.default.type', 'pdo');
     Config::set('db.default.connection.dsn', 'mysql:host=localhost;dbname=fuel_task');
     Config::set('db.default.connection.username', 'root');
     Config::set('db.default.connection.password', 'root');
