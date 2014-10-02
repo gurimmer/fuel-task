@@ -30,13 +30,21 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOP
 // Initialize the framework with the config file.
 Fuel::init('config.php');
 
-$mongoUriPattern = '/mongodb:\/\/(?:([^:^@]+)(?::([^@]+))?@)?([^:^\/]+)(?::(\d+))?\/(.+)/';
-if (preg_match($mongoUriPattern, $_SERVER["MONGOLAB_URI"], $matches)) {
-    list($mongolab_uri, $dbuser, $dbpass, $dbhost, $dbport, $dbname) = $matches;
-    Config::set('db.mongo.default.hostname', $dbhost);
-    Config::set('db.mongo.default.port', $dbport);
-    Config::set('db.mongo.default.database', $dbname);
-    Config::set('db.mongo.default.username', $dbuser);
-    Config::set('db.mongo.default.password', $dbpass);
+if (array_key_exists('HEROKU_POSTGRESQL_BLACK_URL', $_SERVER)) {
+    $dbConfigPattern = '/postgres:\/\/(?:([^:^@]+)(?::([^@]+))?@)?([^:^\/]+)(?::(\d+))?\/(.+)/';
+    if (preg_match($dbConfigPattern, $_SERVER["HEROKU_POSTGRESQL_BLACK_URL"], $matches)) {
+        list($dbConfig, $dbuser, $dbpass, $dbhost, $dbport, $dbname) = $matches;
+        Config::set('db.default.connection.dsn', 'postgres:host='.$dbhost.';dbname='.$dbname);
+        Config::set('db.default.connection.username', $dbuser);
+        Config::set('db.default.connection.password', $dbpass);
+        Config::save('db', 'db');
+    }
+} else {
+    Config::set('db.default.connection.dsn', 'mysql:host=localhost;dbname=fuel_task');
+    Config::set('db.default.connection.username', 'root');
+    Config::set('db.default.connection.password', 'root');
     Config::save('db', 'db');
 }
+
+
+

@@ -8,7 +8,7 @@ class Create_tasks
 	{
 		\DBUtil::create_table('tasks', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true, 'unsigned' => true),
-			'name' => array('constraint' => 256, 'type' => 'varchar'),
+			'name' => array('constraint' => 256, 'type' => 'varchar', 'notnull' => true),
 			'parent' => array('constraint' => 11, 'type' => 'int'),
 			'finished' => array('constraint' => 11, 'type' => 'int', 'default' => '0'),
 			'deleted' => array('constraint' => 11, 'type' => 'int', 'default' => '0'),

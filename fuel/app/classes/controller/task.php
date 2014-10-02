@@ -3,8 +3,7 @@ class Controller_Task extends Controller_Template{
 
 	public function action_index()
 	{
-        $mongodb = Mongo_Db::instance();
-        $data['tasks'] = $mongodb->get('tasks');
+		$data['tasks'] = Model_Task::find('all');
 		$this->template->title = "Tasks";
 		$this->template->content = View::forge('task/index', $data);
 
@@ -14,12 +13,11 @@ class Controller_Task extends Controller_Template{
 	{
 		is_null($id) and Response::redirect('task');
 
-        $mongodb = Mongo_Db::instance();
-        if ( ! $data['task'] = $mongodb->where(array('_id' => $id))->get('tasks'))
-        {
-            Session::set_flash('error', 'Could not find task #'.$id);
-            Response::redirect('task');
-        }
+		if ( ! $data['task'] = Model_Task::find($id))
+		{
+			Session::set_flash('error', 'Could not find task #'.$id);
+			Response::redirect('task');
+		}
 
 		$this->template->title = "Task";
 		$this->template->content = View::forge('task/view', $data);
@@ -34,19 +32,22 @@ class Controller_Task extends Controller_Template{
 			
 			if ($val->run())
 			{
-                $mongodb = Mongo_Db::instance();
-                if ( $insert_id = $mongodb->insert('tasks',
-                    array(
-                        'name' => $val->validated('name'),
-                        'parent' => $val->validated('parent'),
-                        'finished' => $val->validated('finished'),
-                        'deleted' => $val->validated('deleted')
-                    ))
-                )
-                {
-                    Session::set_flash('success', 'Added task #'.$insert_id.'.');
-                    Response::redirect('task');
-                } else {
+				$task = Model_Task::forge(array(
+					'name' => Input::post('name'),
+					'parent' => Input::post('parent'),
+					'finished' => Input::post('finished'),
+					'deleted' => Input::post('deleted'),
+				));
+
+				if ($task and $task->save())
+				{
+					Session::set_flash('success', 'Added task #'.$task->id.'.');
+
+					Response::redirect('task');
+				}
+
+				else
+				{
 					Session::set_flash('error', 'Could not save task.');
 				}
 			}
@@ -65,8 +66,7 @@ class Controller_Task extends Controller_Template{
 	{
 		is_null($id) and Response::redirect('task');
 
-        $mongodb = Mongo_Db::instance();
-		if ( ! $mongodb->where(array('_id' => $id))->get('tasks'))
+		if ( ! $task = Model_Task::find($id))
 		{
 			Session::set_flash('error', 'Could not find task #'.$id);
 			Response::redirect('task');
@@ -76,33 +76,28 @@ class Controller_Task extends Controller_Template{
 
 		if ($val->run())
 		{
-            $task = $mongodb->get('tasks');
 			$task->name = Input::post('name');
 			$task->parent = Input::post('parent');
 			$task->finished = Input::post('finished');
 			$task->deleted = Input::post('deleted');
 
-			if ($mongodb->update('tasks', array(
-                'name' => $task->name,
-                'parent' => $task->parent,
-                'finished' => $task->finished,
-                'deleted' => $task->deleted
-            )))
-            {
+			if ($task->save())
+			{
 				Session::set_flash('success', 'Updated task #' . $id);
 
 				Response::redirect('task');
 			}
-            else
-            {
+
+			else
+			{
 				Session::set_flash('error', 'Could not update task #' . $id);
 			}
 		}
+
 		else
 		{
 			if (Input::method() == 'POST')
 			{
-                $task = Model_Task::forge();
 				$task->name = $val->validated('name');
 				$task->parent = $val->validated('parent');
 				$task->finished = $val->validated('finished');
@@ -123,12 +118,13 @@ class Controller_Task extends Controller_Template{
 	{
 		is_null($id) and Response::redirect('task');
 
-        $mongodb = Mongo_Db::instance();
-		if ($mongodb->where(array('_id' => $id))->get('tasks'))
+		if ($task = Model_Task::find($id))
 		{
-			$mongodb->delete('users');
+			$task->delete();
+
 			Session::set_flash('success', 'Deleted task #'.$id);
 		}
+
 		else
 		{
 			Session::set_flash('error', 'Could not delete task #'.$id);
