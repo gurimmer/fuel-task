@@ -34,18 +34,18 @@ if (array_key_exists('HEROKU_POSTGRESQL_BLACK_URL', $_SERVER)) {
     $dbConfigPattern = '/postgres:\/\/(?:([^:^@]+)(?::([^@]+))?@)?([^:^\/]+)(?::(\d+))?\/(.+)/';
     if (preg_match($dbConfigPattern, $_SERVER["HEROKU_POSTGRESQL_BLACK_URL"], $matches)) {
         list($dbConfig, $dbuser, $dbpass, $dbhost, $dbport, $dbname) = $matches;
-        Config::set('db.default.type', 'pdo');
-        Config::set('db.default.table_prefix', '');
-        Config::set('db.default.connection.dsn', 'pgsql:host='.$dbhost.';dbname='.$dbname);
-        Config::set('db.default.connection.username', $dbuser);
-        Config::set('db.default.connection.password', $dbpass);
+        Config::set('db.development.default.type', 'pdo');
+        Config::set('db.development.default.table_prefix', '');
+        Config::set('db.development.default.connection.dsn', 'pgsql:host='.$dbhost.';dbname='.$dbname);
+        Config::set('db.development.default.connection.username', $dbuser);
+        Config::set('db.development.default.connection.password', $dbpass);
         Config::save('db', 'db');
     }
 } else {
-    Config::set('db.default.type', 'pdo');
-    Config::set('db.default.table_prefix', '');
-    Config::set('db.default.connection.dsn', 'mysql:host=localhost;dbname=fuel_task');
-    Config::set('db.default.connection.username', 'root');
-    Config::set('db.default.connection.password', 'root');
+    Config::set('db.development.default.type', 'pdo');
+    Config::set('db.development.default.table_prefix', '');
+    Config::set('db.development.default.connection.dsn', 'mysql:host=localhost;dbname=fuel_task');
+    Config::set('db.development.default.connection.username', 'root');
+    Config::set('db.development.default.connection.password', 'root');
     Config::save('db', 'db');
 }
