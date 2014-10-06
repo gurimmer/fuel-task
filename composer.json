@@ -21,7 +21,7 @@
     	"fuelphp/upload": "2.0.1",
         "ext-mbstring": "*",
         "ext-mongo": "*",
-        "ext-php-pgsql": "*"
+        "ext-php56-pdo-pgsql": "*"
     },
     "suggest": {
         "mustache/mustache": "Allow Mustache templating with the Parser package",
