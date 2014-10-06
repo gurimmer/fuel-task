@@ -1,10 +1,17 @@
 <?php
-/**
- * Use this file to override global defaults.
- *
- * See the individual environment DB configs for specific config information.
- */
-
 return array(
-
+	'development' => 
+	array(
+		'default' => 
+		array(
+			'type' => 'pdo',
+			'table_prefix' => '',
+			'connection' => 
+			array(
+				'dsn' => 'mysql:host=localhost;dbname=fuel_task',
+				'username' => 'root',
+				'password' => 'root',
+			),
+		),
+	),
 );

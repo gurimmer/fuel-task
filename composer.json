@@ -20,7 +20,8 @@
         "monolog/monolog": "1.5.*",
     	"fuelphp/upload": "2.0.1",
         "ext-mbstring": "*",
-        "ext-mongo": "*"
+        "ext-mongo": "*",
+        "ext-php-pgsql": "*"
     },
     "suggest": {
         "mustache/mustache": "Allow Mustache templating with the Parser package",
