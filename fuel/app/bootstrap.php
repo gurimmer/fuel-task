@@ -37,21 +37,21 @@ if (array_key_exists('HEROKU_POSTGRESQL_BLACK_URL', $_SERVER)) {
         Config::set('migrations.connection', 'default');
         Config::save('migrations', 'migrations');
 
-        Config::set('db.development.default.type', 'pdo');
-        Config::set('db.development.default.table_prefix', '');
-        Config::set('db.development.default.connection.dsn', 'pgsql:host='.$dbhost.';dbname='.$dbname);
-        Config::set('db.development.default.connection.username', $dbuser);
-        Config::set('db.development.default.connection.password', $dbpass);
+        Config::set('db.default.type', 'pdo');
+        Config::set('db.default.table_prefix', '');
+        Config::set('db.default.connection.dsn', 'pgsql:host='.$dbhost.';dbname='.$dbname);
+        Config::set('db.default.connection.username', $dbuser);
+        Config::set('db.default.connection.password', $dbpass);
         Config::save('db', 'db');
     }
 } else {
     Config::set('migrations.connection', 'default');
     Config::save('migrations', 'migrations');
 
-    Config::set('db.development.default.type', 'pdo');
-    Config::set('db.development.default.table_prefix', '');
-    Config::set('db.development.default.connection.dsn', 'mysql:host=localhost;dbname=fuel_task');
-    Config::set('db.development.default.connection.username', 'root');
-    Config::set('db.development.default.connection.password', 'root');
+    Config::set('db.default.type', 'pdo');
+    Config::set('db.default.table_prefix', '');
+    Config::set('db.default.connection.dsn', 'mysql:host=localhost;dbname=fuel_task');
+    Config::set('db.default.connection.username', 'root');
+    Config::set('db.default.connection.password', 'root');
     Config::save('db', 'db');
 }
