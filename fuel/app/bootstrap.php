@@ -34,6 +34,7 @@ if (array_key_exists('HEROKU_POSTGRESQL_BLACK_URL', $_SERVER)) {
     $dbConfigPattern = '/postgres:\/\/(?:([^:^@]+)(?::([^@]+))?@)?([^:^\/]+)(?::(\d+))?\/(.+)/';
     if (preg_match($dbConfigPattern, $_SERVER["HEROKU_POSTGRESQL_BLACK_URL"], $matches)) {
         list($dbConfig, $dbuser, $dbpass, $dbhost, $dbport, $dbname) = $matches;
+        Config::set('db.active', 'default');
         Config::set('db.default.type', 'pdo');
         Config::set('db.default.identifier', '`');
         Config::set('db.default.table_prefix', '');
@@ -44,6 +45,7 @@ if (array_key_exists('HEROKU_POSTGRESQL_BLACK_URL', $_SERVER)) {
         Config::save('db', 'db');
     }
 } else {
+    Config::set('db.active', 'default');
     Config::set('db.default.type', 'pdo');
     Config::set('db.default.identifier', '`');
     Config::set('db.default.table_prefix', '');
