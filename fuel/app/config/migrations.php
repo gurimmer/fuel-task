@@ -1,4 +1,21 @@
 <?php
 return array(
-	'connection' => 'default',
+    'version' =>
+        array(
+            'app' =>
+                array(
+                    'default' =>
+                        array(
+                            0 => '001_create_tasks'
+                        ),
+                ),
+            'module' =>
+                array(
+                ),
+            'package' =>
+                array(
+                ),
+        ),
+    'folder' => 'migrations/',
+    'table' => 'migration',
 );
