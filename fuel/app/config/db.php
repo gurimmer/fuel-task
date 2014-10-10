@@ -12,6 +12,8 @@ if (array_key_exists('HEROKU_POSTGRESQL_BLACK_URL', $_SERVER)) {
                     'username'   => $dbuser,
                     'password'   => $dbpass,
                 ),
+                'identifier'   => '',
+                'table_prefix' => '',
             ),
         );
     }
