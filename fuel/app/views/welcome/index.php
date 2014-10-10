@@ -44,16 +44,6 @@
 		<div class="row">
 			<div class="col-md-4">
 				<h2>Get Started</h2>
-                <?php
-                    echo $_SERVER["MONGOLAB_URI"].PHP_EOL;
-                    echo Config::get("FUEL_ENV").PHP_EOL;
-                    echo Config::get("MONGOLAB_URI").PHP_EOL;
-                    echo Config::get("MONGODB_HOST").PHP_EOL;
-                    echo Config::get("MONGODB_PORT").PHP_EOL;
-                    echo Config::get("MONGODB_NAME").PHP_EOL;
-                    echo Config::get("MONGODB_USER").PHP_EOL;
-                    echo Config::get("MONGODB_PASS").PHP_EOL;
-                ?>
 				<p>The controller generating this page is found at <code>APPPATH/classes/controller/welcome.php</code>.</p>
 				<p>This view can be found at <code>APPPATH/views/welcome/index.php</code>.</p>
 				<p>You can modify these files to get your application started quickly.</p>

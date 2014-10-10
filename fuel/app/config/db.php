@@ -6,7 +6,6 @@ if (array_key_exists('CLEARDB_DATABASE_URL', $_SERVER)) {
         list($dbConfig, $dbuser, $dbpass, $dbhost, $dbport, $dbname) = $matches;
         return array(
             'default' => array(
-                'type' => 'pdo',
                 'connection'  => array(
                     'dsn'        => 'mysql:host='.$dbhost.';dbname='.$dbname,
                     'username'   => $dbuser,
