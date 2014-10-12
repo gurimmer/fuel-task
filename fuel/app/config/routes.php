@@ -4,4 +4,8 @@ return array(
 	'_404_'   => 'welcome/404',    // The main 404 route
 	
 	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
+
+    'task(/:id)?' => array('task/index', 'id' => 'all'),
+    'task/:id(/:action)?' => array('task/action'),
+
 );

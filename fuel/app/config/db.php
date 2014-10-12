@@ -18,7 +18,6 @@ if (array_key_exists('CLEARDB_DATABASE_URL', $_SERVER)) {
 
 return array(
     'default' => array(
-        'type' => 'pdo',
         'connection'  => array(
             'dsn'        => 'mysql:host=localhost;dbname=fuel_task',
             'username'   => 'root',
