@@ -21,7 +21,11 @@
  */
 class Controller_Welcome extends Controller
 {
-
+//    public function before()
+//    {
+//        parent::before();
+//        Lang::load('main');
+//    }
 	/**
 	 * The basic welcome message
 	 *
@@ -30,6 +34,12 @@ class Controller_Welcome extends Controller
 	 */
 	public function action_index()
 	{
+        Config::set('language', 'en');
+        Lang::load('main');
+        Log::info(print_r(Config::get('config'), true));
+        Config::set('language', 'ja');
+        Lang::load('main', null, true, true);
+        Log::info(print_r(Config::get('config'), true));
 		return Response::forge(View::forge('welcome/index'));
 	}
 
@@ -42,6 +52,8 @@ class Controller_Welcome extends Controller
 	 */
 	public function action_hello()
 	{
+        Config::set('language', 'en');
+        Lang::load('main');
 		return Response::forge(ViewModel::forge('welcome/hello'));
 	}
 

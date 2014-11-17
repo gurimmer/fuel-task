@@ -19,7 +19,7 @@ if (array_key_exists('CLEARDB_DATABASE_URL', $_SERVER)) {
 return array(
     'default' => array(
         'connection'  => array(
-            'dsn'        => 'mysql:unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock;host=localhost;dbname=fuel_task',
+	        'dsn'        => 'mysql:unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock;host=localhost;dbname=fuel_task',
             'username'   => 'root',
             'password'   => 'root',
         ),

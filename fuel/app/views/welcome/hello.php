@@ -38,7 +38,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1>Hello, <?php echo $name; ?>! <small>Congratulations, you just used a ViewModel!</small></h1>
+				<h1>Hello, <?php echo $name; ?>! <small>Congratulations, you just used a ViewModel!<?php echo Lang::get('default.message'); ?></small></h1>
 				<hr>
 				<p>The controller generating this page is found at <code>APPPATH/classes/controller/welcome.php</code>.</p>
 				<p>This view is located at <code>APPPATH/views/welcome/hello.php</code>.</p>

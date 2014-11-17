@@ -8,4 +8,5 @@ return array(
     'task(/:id)?' => array('task/index', 'id' => 'all'),
     'task/:id(/:action)?' => array('task/action'),
 
+    'lang/:lang' => 'lang/index',
 );
