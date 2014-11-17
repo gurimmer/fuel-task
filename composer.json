@@ -40,7 +40,7 @@
     "scripts": {
         "post-install-cmd": [
             "php oil r install",
-            "php oil r migrate"
+            "php oil r migrate:current"
         ]
     },
     "minimum-stability": "dev"
