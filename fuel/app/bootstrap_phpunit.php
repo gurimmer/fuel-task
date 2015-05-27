@@ -35,10 +35,10 @@ defined('FUEL_START_MEM') or define('FUEL_START_MEM', memory_get_usage());
 // Boot the app
 require_once APPPATH . 'bootstrap.php';
 
-Package::load('unittest');
-
 // Set test mode
 Fuel::$is_test = true;
 
 // Import the TestCase class
 import('testcase');
+
+Package::load('unittest');

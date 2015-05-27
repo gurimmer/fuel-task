@@ -6,9 +6,20 @@
  * Time: 0:18
  */
 
+class Test_Controller_Task extends DbTestCase {
 
+    protected $tables = array(
+        'tasks' => 'tasks'
+    );
 
-class Test_Controller_Task extends \Fuel\Core\TestCase {
+    protected function setUp(){
+        Session::destroy();
+        Request::reset_request(true);
+        InputEx::reset();
+        Fieldset::reset();
+
+        parent::setUp();
+    }
 
 	public function test_action_index()
 	{
@@ -16,8 +27,6 @@ class Test_Controller_Task extends \Fuel\Core\TestCase {
 		      ->set_method('GET')
 		      ->execute()
 		      ->response();
-
-		$this->assertTag(array('tag' => 'form'), $response->body->__toString());;
 	}
 
 	public function test_action_create()
@@ -26,43 +35,39 @@ class Test_Controller_Task extends \Fuel\Core\TestCase {
 			->set_method('GET')
 			->execute()
 			->response();
-
-		$this->assertTag(array('tag' => 'input', 'name' => 'name', 'content' => ''), $response->body->__toString());
-		$this->assertTag(array('tag' => 'input', 'name' => 'description', 'content' => ''), $response->body->__toString());
-		$this->assertTag(array('tag' => 'input', 'name' => 'parent', 'content' => ''), $response->body->__toString());
-		$this->assertTag(array('tag' => 'input', 'name' => 'finished', 'content' => ''), $response->body->__toString());
-		$this->assertTag(array('tag' => 'input', 'name' => 'deleted', 'content' => ''), $response->body->__toString());
 	}
 
 	public function test_action_create_2_save()
 	{
+        $allCount = Model_Task::count();
+
+        $_POST["name"] = 'test123';
+        $_POST["description"] = 'test description';
+
 		$response = Request::forge('task/create')
 					->set_method('POST')
-					->execute(['name' => 'test123', 'description' => 'test description'])
+					->execute()
 					->response();
 
-		$this->assertTag(array('tag' => 'span', 'content' => 'Added task #'));
+        $this->assertEquals($allCount+1, Model_Task::count());
 	}
 
-	public function test_action_create_name_length()
-		{
-			$response = Request::forge('task/create')
-						->set_method('POST')
-						->execute(['name' => 'test123', 'description' => 'test description'])
-						->response();
-
-			$this->assertTag(array('tag' => 'span', 'content' => 'Added task #'));
-		}
-
-	public function test_action_view()
+	public function test_action_view_name_and_description()
 	{
 		$id = 1;
 		$response = Request::forge('task/view')
 		      ->set_method('GET')
 		      ->execute(['id' => $id])
 		      ->response();
-
-		$this->assertTag(array('tag' => 'span','class' => 'muted', 'content' =>'#'.$id), $response->body->__toString());
 	}
+
+    public function test_action_view_all()
+    {
+        $id = 2;
+        $response = Request::forge('task/view')
+            ->set_method('GET')
+            ->execute(['id' => $id])
+            ->response();
+    }
 
 } 

@@ -17,10 +17,14 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "monolog/monolog": "1.5.*",
+        "monolog/monolog": "~1.7",
     	"fuelphp/upload": "2.0.1",
-        "ext-mbstring": "*",
-        "ext-mongo": "*"
+        "opauth/opauth": "0.4.*",
+        "opauth/facebook": "dev-master",
+        "opauth/google": "dev-master",
+        "google/apiclient": "1.*",
+        "asimlqt/php-google-spreadsheet-client": "2.3.*",
+        "ext-mbstring": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.*",

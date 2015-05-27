@@ -6,9 +6,7 @@
  * Time: 22:47
  */
 
-use Fuel\Core\TestCase;
-
-class Test_Model_Task extends TestCase {
+class Test_Model_Task extends DbTestCase {
 
 	public function test_create_task(){
 		$count = count(Model_Task::find("all"));

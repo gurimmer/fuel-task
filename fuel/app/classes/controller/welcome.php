@@ -52,8 +52,6 @@ class Controller_Welcome extends Controller
 	 */
 	public function action_hello()
 	{
-        Config::set('language', 'en');
-        Lang::load('main');
 		return Response::forge(ViewModel::forge('welcome/hello'));
 	}
 
