@@ -1,8 +1,5 @@
 <?php
 
-use Google\Spreadsheet\DefaultServiceRequest;
-use Google\Spreadsheet\ServiceRequestFactory;
-
 class Controller_Task extends Controller_Template{
 
 	public function action_index()
@@ -12,46 +9,6 @@ class Controller_Task extends Controller_Template{
 		$this->template->content = View::forge('task/index', $data);
 
 	}
-
-    public function action_google()
-    {
-        //notasecret
-        $client_email = '337080989922-8pgkckg4jc1ff7vietjsidvugv2heq61@developer.gserviceaccount.com';
-        $private_key = file_get_contents(COREPATH.'../../tenpu-dev-649c739d0ea0.p12');
-        $scopes = array('https://www.googleapis.com/auth/sqlservice.admin');
-        $credentials = new Google_Auth_AssertionCredentials(
-            $client_email,
-            $scopes,
-            $private_key
-        );
-
-        $client = new Google_Client();
-        $client->setAssertionCredentials($credentials);
-        if ($client->getAuth()->isAccessTokenExpired()) {
-          $client->getAuth()->refreshTokenWithAssertion();
-        }
-        $accessToken = $client->getAccessToken();
-        Log::info($accessToken);
-
-        $serviceRequest = new DefaultServiceRequest($accessToken);
-        ServiceRequestFactory::setInstance($serviceRequest);
-
-        $spreadsheetService = new Google\Spreadsheet\SpreadsheetService();
-        $spreadsheetFeed = $spreadsheetService->getSpreadsheets();
-        $spreadsheet = $spreadsheetFeed->getByTitle('api_test');
-        $worksheetFeed = $spreadsheet->getWorksheets();
-        $worksheet = $worksheetFeed->getByTitle('sheet1');
-
-        $listFeed = $worksheet->getListFeed();
-        $entries = $listFeed->getEntries();
-        $listEntry = $entries[0];
-
-        $values = $listEntry->getValues();
-        $values['name'] = 'Joe';
-        $listEntry->update($values);
-
-        Log::info('update');
-    }
 
 	public function action_view($id = null)
 	{
